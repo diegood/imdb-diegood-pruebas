@@ -4,4 +4,6 @@ const express = require("express");
 const http= require("http");
 const app = express();
 
-http.createSercer(app).listen(process.env.PORT || 3000);
+app.use(express.static('public'));
+
+http.createServer(app).listen(parseInt(process.env.PORT || 3000));
