@@ -1,9 +1,10 @@
 const http = require ("http");
 
-function request(host, path, cb){
+console.log(module.main);
+const  request =(host, path, port, cb)=>{
 	var options = {
 	  hostname: host,
-	  port: 80,
+	  port: port,
 	  path: '/'+path,
 	  method: 'POST',
 	};
@@ -19,7 +20,20 @@ function request(host, path, cb){
 	req.end();
 }
 
-request('www.omdbapi.com','?t=volver&y=&plot=short&r=json', (err,res)=>{
-	console.log(res);
-	return res;
+if(!module.parent){
+//	let host = process.env.HOST || null;
+//	let path = process.env.PATH || null;
+//	let 
+	request('www.omdbapi.com','?t=volver&y=&plot=short&r=json', 80, (err,res)=>{
+	if (err) {
+		console.log(err);
+	}else{
+		console.log(res);
+		return res;
+	}
+		
 });
+
+}
+
+module.exports = request;
